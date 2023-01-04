@@ -40,6 +40,13 @@
                     "fallbackLocale":""
                 }
             }
-        }
+        },
+        "resources": {
+            "css": [
+                {
+                    "url": "css/style.css"
+                }
+            ]
+        } 
     }
 }
