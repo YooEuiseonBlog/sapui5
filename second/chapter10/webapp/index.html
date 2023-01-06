@@ -1,0 +1,27 @@
+<!--
+    이제 index.html의 본문에 구성 요소를 선언합니다. index.html의 부트스트래핑 스크립트에서 ComponentSupport 모듈을 활성화하고 sap.m 라이브러리를 제거합니다. 
+    그런 다음 div 태그를 통해 본문에 구성 요소를 선언합니다. onInit 이벤트가 실행될 때 구성 요소를 인스턴스화합니다.
+    디스크립터가 모든 것을 처리하기 때문에 지금부터는 index.js가 더 이상 필요하지 않습니다.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SAPUI5 Walkthrough -Bootstrap</title>
+    <script
+        id="sap-ui-bootstrap"
+        src="https://sdk.openui5.org/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_belize"
+        data-sap-ui-libs="sap.m" 
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-onInit="module:sap/ui/core/ComponentSupport"
+        data-sap-ui-resourceroots='{
+            "sap.ui.demo.walkthrough" : "./"        
+        }'         
+    ></script>
+</head>
+<body class="sapUiBody" id="content">
+    <div data-sap-ui-component data-name="sap.ui.demo.walkthrough" data-id="container", data-settings= '{"id" : "walkthrough"}'></div>
+</body>
+</html>
