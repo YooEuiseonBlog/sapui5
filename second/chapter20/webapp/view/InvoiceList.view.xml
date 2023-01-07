@@ -1,0 +1,55 @@
+<!--
+    인보이스 목록은 이미 괜찮아 보이지만 가격이 지정되지 않은 인보이스는 무엇입니까? 
+    일반적으로 가격은 기술적 형식으로 ' . ' 데이터 모델의 구분 기호입니다. 
+    예를 들어 파인애플에 대한 인보이스는 계산된 가격이 통화 없이 87.2입니다. 
+    SAPUI5 데이터 유형을 사용하여 로케일 종속 소수점 구분 기호와 구분 기호 뒤에 두 자리 숫자를 사용하여 가격을 적절하게 형식화할 것입니다.
+
+
+    가격 및 번호 단위가 포함된 송장 목록
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.InvoiceList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        headerText="{i18n>invoiceListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{invoice>/Invoices}"
+    >
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+                numberUnit="{view>/currency}"
+            />
+        </items>
+    </List>
+</mvc:View>
+
+<!--
+    ObjectListItem 컨트롤에 number 및 numberUnit 속성을 추가하여 뷰의 송장 목록(InvoiceList)에 가격을 추가한 다음 
+    바인딩 구문의 type 속성을 sap.ui.model.type으로 설정하여 숫자에 통화 데이터 유형을 적용합니다. .통화.
+
+    위에서 볼 수 있듯이 ObjectListItem의 number 속성에 대해 특수한 바인딩 구문을 사용하고 있습니다. 
+    이 바인딩 구문은 다른 모델의 여러 속성을 컨트롤의 단일 속성에 바인딩할 수 있는 소위 "Calculated Fields"를 사용합니다. 
+    다른 모델에서 바인딩된 속성을 "parts"이라고 합니다. 
+    위의 예에서 컨트롤의 속성은 숫자이고 서로 다른 두 모델에서 검색된 바운드 속성("parts")은 invoice>ExtendedPrice 및 view>/currency입니다.
+
+    우리는 가격을 유로로 표시하려고 하며 일반적으로 통화는 백엔드에서 데이터 모델의 일부입니다. 
+    우리의 경우에는 그렇지 않으므로 앱에서 직접 정의해야 합니다. 따라서 송장 목록에 대한 컨트롤러를 추가하고 
+    바인딩 구문의 두 번째 부분으로 통화 속성을 사용합니다. 
+    통화 유형은 통화 코드를 기반으로 가격 형식을 처리합니다. 
+    우리의 경우 가격은 소수점 이하 2자리로 표시됩니다.
+
+    또한 형식 지정 옵션 showMeasure를 false로 설정했습니다. 
+    이것은 별도의 속성 numberUnit으로 ObjectListItem 컨트롤에 전달되기 때문에 속성 번호에서 통화 코드를 숨깁니다.
+    
+-->

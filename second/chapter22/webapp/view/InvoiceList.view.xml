@@ -1,0 +1,41 @@
+<!--
+    송장의 상태를 표시할 ObjectListItem에 firstStatus 집계를 사용하여 상태를 추가합니다. 
+    사용자 지정 포맷터 함수는 바인딩 구문의 예약된 포맷터 속성으로 지정됩니다.  
+    "." 포맷터 이름 앞에 있는 것은 현재 보기view의 컨트롤러에서 함수function를 조회한다는 의미입니다. 
+    거기에서 포맷터 기능을 보유하는 속성 포맷터를 정의했으므로 .formatter.statusText로 액세스할 수 있습니다.
+.
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.InvoiceList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        headerText="{i18n>invoiceListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{invoice>/Invoices}"
+    >
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+                numberUnit="{view>/currency}"
+                numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success'}"
+            >
+                <firstStatus>
+                    <ObjectStatus text="{
+                        path: 'invoice>Status',
+                        formatter: '.formatter.statusText'
+                    }"/>
+                </firstStatus>
+            </ObjectListItem>
+        </items>
+    </List>
+</mvc:View>

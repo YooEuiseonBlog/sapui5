@@ -1,3 +1,10 @@
+/*
+    이제 대화 상자를 통합했으므로 일부 사용자 상호 작용을 추가할 차례입니다. 
+    사용자는 언젠가는 대화 상자를 다시 닫고 싶어할 것이므로 대화 상자를 닫고 이벤트 핸들러를 할당하는 버튼을 추가합니다.
+
+    이제 대화 상자에 "확인" 버튼이 있습니다.
+*/
+
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
@@ -26,22 +33,15 @@ sap.ui.define([
             this.pDialog.then(function(oDialog){
                 oDialog.open();
             });
+        },
+
+        onCloseDialog : function() {
+            //참고: 이 이벤트 핸들러는 로드된 대화 자체 내에서만 호출되기 때문에 pDialog 'promise'에 연결할 필요가 없습니다.
+            this.byId("helloDialog").close();
         }
     });
-    
 });
 
 /*
-    프래그먼트의 대화 상자가 아직 존재하지 않으면 loadFragment API를 호출하여 프래그먼트를 인스턴스화합니다.
-
-    위 스니펫에서 볼 수 있듯이 컨트롤러 인스턴스에 대화 조각의 로드 Promise를 저장합니다. 
-    이를 통해 우리는 helloDialogButton 버튼을 클릭할 때마다 대화 상자 열기를 비동기적으로 처리할 수 있습니다.
-
-    다른 컨트롤러에서 대화 열기 및 닫기 기능을 재사용하려면 
-    sap.ui.core.mvc.Controller를 확장하는 새 파일 sap.ui.demo.walkthrough.controller.BaseController를 만들고 
-    모든 대화 관련 코딩을 넣을 수 있습니다. 
-    이 컨트롤러에. 이제 다른 모든 컨트롤러는 sap.ui.core.mvc.Controller 
-    대신 sap.ui.demo.walkthrough.controller.BaseController에서 확장할 수 있습니다.
-
-    개인 함수와 변수는 항상 밑줄로 시작해야 합니다.
+    이벤트 처리기 함수는 동일한 컨트롤러 파일에 배치되고 대화 상자를 반환하는 내부 도우미 함수에 액세스하여 대화 상자를 닫습니다.
 */

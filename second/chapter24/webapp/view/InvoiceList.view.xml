@@ -1,0 +1,74 @@
+<!--
+    인보이스 목록을 더욱 사용자 친화적으로 만들기 위해 데이터 모델의 순서만 표시하는 대신 알파벳순으로 정렬합니다.
+    또한 데이터를 보다 쉽게 ​​사용할 수 있도록 그룹을 도입하고 제품을 배송하는 회사를 추가합니다.
+
+    이제 목록이 배송 회사별로 정렬 및 그룹화되었습니다.
+-->
+
+<!--
+    바인딩 구문에 선언적 분류기(sorter)를 추가합니다. 
+    평소와 같이 간단한 바인딩 구문을 개체 표기법으로 변환하고 데이터 경로를 지정하고 이제 추가 분류기 속성을 추가합니다. 
+    송장 항목을 정렬해야 하는 데이터 경로를 지정하고 나머지는 자동으로 수행됩니다. 
+    기본적으로 정렬은 오름차순이지만 정렬 순서를 변경하기 위해 sorter 속성 내에 값이 true인 내림차순 속성(descending)을 추가할 수도 있습니다.
+
+    이제 앱을 실행하면 제품 이름별로 정렬된 인보이스 목록을 볼 수 있습니다.
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.InvoiceList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        id="invoiceList"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{
+            path: 'invoice>/Invoices',
+            sorter: {
+                path: 'ShipperName',
+                group: true
+            }
+        }"
+    >
+        <headerToolbar>
+            <Toolbar>
+                <Title text="{i18n>invoiceListTitle}"/>
+                <ToolbarSpacer/>
+                <SearchField width="50%" search=".onFilterInvoices"/>
+            </Toolbar>
+        </headerToolbar>
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+                numberUnit="{view>/currency}"
+                numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success'}"
+            >
+                <firstStatus>
+                    <ObjectStatus text="{
+                        path: 'invoice>Status',
+                        formatter: '.formatter.statusText'
+                    }"/>
+                </firstStatus>
+            </ObjectListItem>
+        </items>
+        
+    </List>
+</mvc:View>
+
+<!--
+    보기를 수정하고 다른 분류기sorter를 추가하거나 더 나은 방법을 추가합니다. 
+    분류기를 변경하고 속성 그룹을 true로 설정합니다. ShipperName 데이터 필드의 경로도 지정합니다. 
+    송장 항목을 운송 회사별로 그룹화합니다.
+
+
+    분류기sorter와 마찬가지로 추가 조치가 필요하지 않습니다. 
+    SAPUI5의 목록 및 데이터 바인딩 기능은 그룹 헤더를 자동으로 표시하고 항목을 그룹으로 분류하는 트릭을 수행합니다. 
+    원하는 경우 groupHeaderFactory 속성을 설정하여 사용자 지정 그룹 헤더 팩터리를 정의할 수 있지만 결과는 이미 괜찮아 보입니다.
+-->

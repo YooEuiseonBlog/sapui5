@@ -1,0 +1,28 @@
+<!--
+    new view는 사용자 지정 헤더 텍스트가 있는 목록 컨트롤을 표시합니다. 
+    목록의 항목 집계는 JSON 데이터의 루트 경로 invoices에 바인딩됩니다. 
+    그리고 명명된 모델을 정의했으므로 각 바인딩 정의에 식별자 invoice>를 접두사로 붙여야 합니다.
+
+    항목 집계에서 테스트 데이터의 각 invoice에 대해 자동으로 반복되는 목록의 템플릿을 정의합니다. 
+    보다 정확하게는 ObjectListItem을 사용하여 항목 집계의 집계된 각 하위 항목에 대한 컨트롤을 만듭니다. 
+    목록 항목의 제목 속성은 단일 invoice의 속성에 바인딩됩니다. 
+    이는 상대 경로를 정의하여 달성됩니다(처음에 / 없이). 
+    이는 items={invoice>/Invoices}를 통해 항목 집계를 인보이스에 바인딩했기 때문에 작동합니다.
+-->
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        headerText="{i18n>invoiceListTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{invoice>/Invoices}"
+    >
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+            />
+        </items>
+    </List>
+</mvc:View>

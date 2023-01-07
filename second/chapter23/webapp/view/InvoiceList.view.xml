@@ -1,0 +1,57 @@
+<!--
+    이 단계에서는 제품 목록에 대한 검색 필드를 추가하고 검색어를 나타내는 필터를 정의합니다. 
+    검색 시 검색어와 일치하는 항목만 표시되도록 목록이 자동으로 업데이트됩니다.
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.InvoiceList"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <List
+        id="invoiceList"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{invoice>/Invoices}"
+    >
+        <headerToolbar>
+            <Toolbar>
+                <Title text="{i18n>invoiceListTitle}"/>
+                <ToolbarSpacer/>
+                <SearchField width="50%" search=".onFilterInvoices"/>
+            </Toolbar>
+        </headerToolbar>
+        <items>
+            <ObjectListItem
+                title="{invoice>Quantity} x {invoice>ProductName}"
+                number="{
+                    parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+                numberUnit="{view>/currency}"
+                numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success'}"
+            >
+                <firstStatus>
+                    <ObjectStatus text="{
+                        path: 'invoice>Status',
+                        formatter: '.formatter.statusText'
+                    }"/>
+                </firstStatus>
+            </ObjectListItem>
+        </items>
+        
+    </List>
+</mvc:View>
+
+<!--
+    인보이스 목록에 추가하는 검색 컨트롤을 통해 보기가 확장됩니다. 
+    또한 검색 필드에 추가하는 이벤트 핸들러 함수 onFilterInvoices에서 목록을 식별할 수 있도록 
+    목록 컨트롤에 대한 ID invoiceList를 지정해야 합니다. 
+    또한 검색 필드는 목록 헤더의 일부이므로 목록 바인딩이 변경될 때마다 검색 필드를 포함하여 전체 목록이 다시 렌더링됩니다.
+
+    headerToolbar 집계는 이전에 목록 헤더에 사용했던 간단한 제목 속성을 대체합니다. 
+    도구 모음 컨트롤은 훨씬 더 유연하며 원하는 대로 조정할 수 있습니다. 
+    이제 sap.m.Title 컨트롤, 스페이서(spacer) 및 오른쪽의 sap.m.SearchField와 함께 왼쪽에 제목을 표시하고 있습니다.
+-->

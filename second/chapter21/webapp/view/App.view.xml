@@ -1,0 +1,28 @@
+<!--
+    패널 콘텐츠는 점점 더 복잡해지고 있으며 이제 패널 콘텐츠를 별도의 보기로 이동할 때입니다. 
+    이러한 접근 방식을 사용하면 애플리케이션 구조를 이해하기가 훨씬 쉬워지고 앱의 개별 부분을 재사용할 수 있습니다.
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
+<Shell>
+    <App class="myAppDemoWT">
+        <pages>
+            <Page title="{i18n>homePageTitle}">            
+                    <content>
+                        <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
+                        <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.InvoiceList"/>
+                    </content>
+            </Page>
+        </pages>
+    </App>
+</Shell>
+</mvc:View>
+
+
+<!-- 
+    App.view에서 패널 아래에 인보이스를 표시하는 두 번째 보기를 추가합니다.
+-->

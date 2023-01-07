@@ -1,0 +1,36 @@
+<!--
+    조각에서 대화를 선언적으로 정의하기 위해 새 XML 파일을 추가합니다. 
+    프래그먼트 자산은 코어 네임스페이스에 있으므로 FragmentDefinition 태그 내부에 xml 네임스페이스를 추가합니다.
+
+    구문은 보기와 비슷하지만 프래그먼트에는 컨트롤러가 없으므로 이 속성이 없습니다. 
+    또한 프래그먼트는 앱의 DOM 트리에 공간이 없으며 프래그먼트 자체의 컨트롤 인스턴스가 없습니다(포함된 컨트롤만 있음). 
+    재사용 제어 세트의 컨테이너일 뿐입니다.
+-->
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="helloDialog"
+        title="Hello {/recipient/name}"
+    >
+        <beginButton>
+            <Button
+                text="{i18n>dialogCloseButtonText}"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>
+
+<!--
+    프래그먼트 정의에서 대화상자의 beginButton 집계에 버튼을 추가합니다. 
+    프레스 핸들러는 .onCloseDialog라는 이벤트 핸들러를 참조합니다. 
+    loadFragment 함수를 사용하여 프래그먼트 콘텐츠를 생성하면 버튼을 누를 때 메소드가 호출됩니다. 
+    대화 상자에는 endButton뿐만 아니라 beginButton이라는 집계가 있습니다. 
+    이 두 집계에 버튼을 배치하면 UI에서 endButton 앞에 beginButton이 배치됩니다. 
+    그러나 이전의 의미는 현재 언어의 텍스트 방향에 따라 다릅니다. 
+    따라서 우리는 시작과 끝이라는 용어를 "왼쪽"과 "오른쪽"의 동의어로 사용합니다. 
+    왼쪽에서 오른쪽으로 방향이 있는 언어에서 beginButton은 왼쪽으로 렌더링되고 endButton은 대화 바닥글의 오른쪽에 렌더링됩니다. 
+    -to-left 모드는 특정 언어의 경우 순서가 전환됩니다.
+-->
