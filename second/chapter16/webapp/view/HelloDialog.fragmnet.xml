@@ -1,0 +1,18 @@
+<!--
+    조각에서 대화를 선언적으로 정의하기 위해 새 XML 파일을 추가합니다. 
+    프래그먼트 자산은 코어 네임스페이스에 있으므로 FragmentDefinition 태그 내부에 xml 네임스페이스를 추가합니다.
+
+    구문은 보기와 비슷하지만 프래그먼트에는 컨트롤러가 없으므로 이 속성이 없습니다. 
+    또한 프래그먼트는 앱의 DOM 트리에 공간이 없으며 프래그먼트 자체의 컨트롤 인스턴스가 없습니다(포함된 컨트롤만 있음). 
+    재사용 제어 세트의 컨테이너일 뿐입니다.
+-->
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="helloDialog"
+        title="Hello {/recipient/name}"
+    >
+    </Dialog>
+</core:FragmentDefinition>

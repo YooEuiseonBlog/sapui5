@@ -1,0 +1,68 @@
+<!--
+    이제 셸 컨트롤을 앱의 컨테이너로 사용하고 이를 새로운 루트 요소로 사용합니다. 
+    셸은 데스크톱 화면에 소위 레터박스를 도입하여 장치의 화면 크기에 대한 응용 프로그램의 시각적 적응을 처리합니다.
+
+    이제 앱이 앱 너비를 제한하는 셸에서 실행됩니다.
+
+    변경 전 
+    <Shell>
+    <App>
+        <pages>
+            <Page title="{i18n>homePageTitle}">
+                <content>
+                    <Panel headerText="{i18n>helloPanelTitle}">
+                        <content>
+                            <Button
+                            text="{i18n>showHelloButtonText}"
+                            press=".onShowHello"/>
+                            <Input
+                                value="{/recipient/name}"
+                                description="Hello {/recipient/name}"
+                                valueLiveUpdate="true"
+                                width="60%"/>
+                        </content>
+                    </Panel>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</Shell>
+
+변경 후 (태그 규칙 훼손. 없어도 동작 이상 없음)
+-->
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
+<Shell>
+    <App>
+        <pages>
+            <Page title="{i18n>homePageTitle}">
+                <Panel headerText="{i18n>helloPanelTitle}">
+                    <content>
+                        <Button
+                        text="{i18n>showHelloButtonText}"
+                        press=".onShowHello"/>
+                        <Input
+                            value="{/recipient/name}"
+                            description="Hello {/recipient/name}"
+                            valueLiveUpdate="true"
+                            width="60%"/>
+                    </content>
+                </Panel>
+            </Page>
+        </pages>
+    </App>
+</Shell>
+</mvc:View>
+
+<!-- 
+    셸 컨트롤은 이제 우리 앱의 가장 바깥쪽 컨트롤이며 화면 크기가 특정 너비보다 큰 경우 소위 레터박스를 자동으로 표시합니다.
+    이미 구성 요소 UI 주변에 셸이 있는 SAP Fiori 실행 패드와 같은 외부 셸에서 앱이 실행되는 경우
+    XML 보기의 선언적 UI 정의에 셸 컨트롤을 추가하지 않습니다.
+
+    사용자 지정 배경 이미지 또는 색상 설정 및 사용자 지정 로고 설정과 같이 셸을 사용자 지정하는 추가 옵션이 있습니다.
+    자세한 내용은 관련 API 참조를 확인하세요.
+-->

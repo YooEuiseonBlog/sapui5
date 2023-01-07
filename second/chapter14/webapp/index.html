@@ -1,9 +1,7 @@
 <!--
-    앱 구조에 대한 모든 작업이 끝나면 이제 앱의 모양을 개선할 때입니다. 
-    sap.m 라이브러리의 두 가지 컨트롤을 사용하여 UI에 "블링"을 조금 더 추가할 것입니다. 
-    이 단계에서는 컨트롤 집계에 대해서도 알아봅니다.
-
-    이제 패널에 이전 단계의 컨트롤이 표시됩니다.
+    이제 index.html의 본문에 구성 요소를 선언합니다. index.html의 부트스트래핑 스크립트에서 ComponentSupport 모듈을 활성화하고 sap.m 라이브러리를 제거합니다. 
+    그런 다음 div 태그를 통해 본문에 구성 요소를 선언합니다. onInit 이벤트가 실행될 때 구성 요소를 인스턴스화합니다.
+    디스크립터가 모든 것을 처리하기 때문에 지금부터는 index.js가 더 이상 필요하지 않습니다.
 -->
 <!DOCTYPE html>
 <html>
@@ -27,3 +25,4 @@
     <div data-sap-ui-component data-name="sap.ui.demo.walkthrough" data-id="container", data-settings= '{"id" : "walkthrough"}'></div>
 </body>
 </html>
+
