@@ -1,0 +1,17 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Page
+        title="{i18n>detailPageTitle}"
+    >
+        <ObjectHeader
+            title="Invoices"
+        />
+    </Page>
+</mvc:View>
+
+<!--
+    이제 상세 보기Detail.view에 대한 두 번째 보기view를 추가합니다. 
+    여기에는 현재 정적 텍스트 Invoice를 표시하는 페이지와 ObjectHeader 컨트롤만 포함되어 있습니다.
+-->

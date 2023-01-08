@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.Detail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:wt="sap.ui.demo.walkthrough.control"
+>
+    <Page
+        title="{i18n>detailPageTitle}"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
+        <ObjectHeader
+            intro="{invoice>ShipperName}"
+            title="{invoice>ProductName}"
+        />
+        <wt:ProductRating id="rating" class="sapUiSmallMarginBeginEnd" change=".onRatingChange"/>
+    </Page>
+</mvc:View>
+
+<!--
+    이제 세부 정보 페이지로 이동하여 송장을 표시할 수 있지만 아직 개요 페이지로 돌아갈 수는 없습니다. 
+    세부 정보 페이지에 뒤로 버튼을 추가하고 개요 페이지를 다시 표시하는 기능을 구현합니다.
+
+
+    세부 정보 페이지에서 showNavButton 매개 변수를 true로 설정하여 뒤로 버튼을 표시하도록 
+    컨트롤에 지시하고 뒤로 버튼을 누를 때 호출되는 이벤트 핸들러를 등록합니다.
+
+    새 네임스페이스 wt는 자세히 보기에 정의되어 보기에서 사용자 지정 컨트롤을 쉽게 참조할 수 있습니다. 
+    그런 다음 세부 정보 페이지에 ProductRating 컨트롤의 인스턴스를 추가하고 변경 이벤트에 대한 이벤트 처리기를 등록합니다. 
+    적절한 레이아웃을 갖기 위해 여백 스타일 클래스도 추가합니다.
+-->

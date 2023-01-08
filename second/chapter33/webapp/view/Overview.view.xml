@@ -1,0 +1,24 @@
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Page title="{i18n>homePageTitle}">
+        <headerContent>
+            <Button
+                icon="sap-icon://hello-world"
+                press=".onOpenDialog"
+            />
+        </headerContent>
+        <content>
+            <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
+            <mvc:XMLView viewName="sap.ui.demo.walkthrough.view.InvoiceList"/>
+        </content>
+    </Page>
+</mvc:View>
+<!--
+    이전 단계의 콘텐츠를 앱 보기(App.view)에서 새 개요 보기(Overview.view)로 이동합니다. 
+    단순화를 위해 컨트롤러에는 대화 상자를 여는 도우미 메서드만 포함되어 있으므로 컨트롤러를 변경하지 않습니다. 
+    즉, 두 가지 다른 보기(새 개요 및 앱 보기). 그러나 해당 컨트롤러의 두 인스턴스는 런타임에 인스턴스화됩니다. 
+    일반적으로 컨트롤러를 참조하는 각 보기에 대해 컨트롤러 인스턴스 하나가 인스턴스화됩니다.
+-->

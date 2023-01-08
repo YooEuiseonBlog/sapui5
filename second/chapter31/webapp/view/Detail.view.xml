@@ -1,0 +1,22 @@
+<mvc:View
+    controllerName="sap.ui.demo.walkthrough.controller.Detail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Page
+        title="{i18n>detailPageTitle}"
+    >
+        <ObjectHeader
+            intro="{invoice>ShipperName}"
+            title="{invoice>ProductName}"
+        />
+    </Page>
+</mvc:View>
+
+<!--
+    이제 상세 보기Detail.view에 대한 두 번째 보기view를 추가합니다. 
+    여기에는 현재 정적 텍스트 Invoice를 표시하는 페이지와 ObjectHeader 컨트롤만 포함되어 있습니다.
+
+    보기view에서 항목의 컨텍스트를 설정하고 ObjectHeader의 일부 속성을 송장 모델의 필드에 바인딩하는 컨트롤러를 추가합니다. 
+    여기에 인보이스 개체의 자세한 정보를 추가할 수 있지만 단순화를 위해 지금은 두 개의 필드만 표시합니다.
+-->
